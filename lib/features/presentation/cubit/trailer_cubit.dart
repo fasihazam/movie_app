@@ -19,7 +19,6 @@ class TrailerCubit extends Cubit<TrailerState> {
         emit(TrailerError("Trailer not available."));
       }
     } catch (e) {
-      // Print the error for debugging purposes
       debugPrint("Error fetching trailer: $e");
       emit(TrailerError("Failed to load trailer. Please try again."));
     }
