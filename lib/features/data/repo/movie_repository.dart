@@ -50,4 +50,16 @@ class MovieRepository {
           "Failed to load trailer. Status code: ${response.statusCode}");
     }
   }
+
+  Future<Movie> fetchMovieDetails(int movieId) async {
+    final response = await http.get(Uri.parse(
+        "https://api.themoviedb.org/3/movie/$movieId?api_key=$apiKey"));
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      return Movie.fromJson(data);
+    } else {
+      throw Exception("Failed to load movie details");
+    }
+  }
 }
